@@ -1,64 +1,129 @@
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## About the project
 
-## About Laravel
+End-of-study project carried out as part of the passage of the title "Designer Developer of application"
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Prerequisite
+You can launch the project in 2 different ways:
+- option 1: docker
+<div align="center">
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+[<img src="https://www.docker.com/wp-content/uploads/2022/03/horizontal-logo-monochromatic-white.png" alt="docker logo" height="80">](https://www.docker.com/)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+</div>
 
-## Learning Laravel
+- option 2: install everything locally
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+<div align="center">
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+[<img src="https://www.php.net/images/logos/new-php-logo.svg" alt="php logo" height="80">](https://www.php.net/downloads.php#v8.0.17) |   [<img src="https://getcomposer.org/img/logo-composer-transparent3.png" alt="composer logo" height="80">](https://getcomposer.org/)   |   [<img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg" alt="nodejs logo" height="80">](https://nodejs.org)
 
-## Laravel Sponsors
+</div>
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+## Installation & configuration
+- option 1 : docker
 
-### Premium Partners
+Before creating the docker image, you must first copy the .env.example file by renaming it to .env and complete the following fields:
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+- DB_DATABASE
+- DB_USERNAME
+- DB_PASSWORD
 
-## Contributing
+These lines are also used to create the docker image
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```bash
+cp .env.example .env
+```
+If you chose to use mysql, you must uncomment lines 23-37 and comment lines 39-52 in the docker-compose.yml file
 
-## Code of Conduct
+Now run this commands in your terminal to build docker image:
+```bash
+docker compose build
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+After docker is done building the image, you can launch the container with the following command:
+```bash
+docker compose up -d
+```
+In order to interact with the laravel application, you need to access the container via the following command which will open a bash terminal for you:
+```bash
+docker compose exec -it app bash
+```
 
-## Security Vulnerabilities
+```bash
+composer install
+npm install
+php artisan key:generate
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Then perform migrations and generate the dataset
+```bash
+php artisan migrate
+
+php artisan db:seed
+```
+Now you can exit from the container by typing ***exit***
+
+The application is accessible at the following address:
+
+http://localhost:8080/
+
+To access the database via phpmyadmin, use the following address:
+
+http://localhost:8085/
+
+You just have to fill in the user, the password entered in the .env file and leave the server field empty
+
+If you want to modify a page on the front part, you must use this command for the modifications to be taken into account
+
+```bash
+docker compose exec -it app bash
+npm run watch-poll
+```
+<br/>
+
+- option 2 : locally
+
+```bash
+composer install
+npm install 
+cp .env.example .env
+php artisan key:generate
+```
+Create a database locally then complete the .env file
+
+- DB_HOST
+- DB_PORT
+- DB_DATABASE
+- DB_USERNAME
+- DB_PASSWORD
+
+Then perform migrations
+
+```bash
+php artisan migrate
+```
+Generate the dataset
+```bash
+php artisan db:seed
+```
+
+To use, in 2 different terminals, you must type :
+```bash
+php artisan serve
+```
+```bash
+npm run watch
+```
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+The project is open-sourced software licensed under the [GNU GPLv3](https://www.gnu.org/licenses/gpl-3.0.html).
+
+## Authors
+<div align="center">
+
+Eddy MANDRAN [@eddymandran](https://github.com/eddymandran)  | Julien PELLATTIERO [@Pella0](https://github.com/Pella0)   | Simon MAINFROY [@SimonMfroy](https://github.com/SimonMfroy)
+
+</div>
