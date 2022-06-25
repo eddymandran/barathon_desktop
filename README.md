@@ -5,24 +5,16 @@
 End-of-study project carried out as part of the passage of the title "Designer Developer of application"
 
 ## Prerequisite
-You can launch the project in 2 different ways:
-- option 1: docker
+You need docker to run the project
 <div align="center">
 
 [<img src="https://www.docker.com/wp-content/uploads/2022/03/horizontal-logo-monochromatic-white.png" alt="docker logo" height="80">](https://www.docker.com/)
 
 </div>
 
-- option 2: install everything locally
 
-<div align="center">
-
-[<img src="https://www.php.net/images/logos/new-php-logo.svg" alt="php logo" height="80">](https://www.php.net/downloads.php#v8.0.17) |   [<img src="https://getcomposer.org/img/logo-composer-transparent3.png" alt="composer logo" height="80">](https://getcomposer.org/)   |   [<img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg" alt="nodejs logo" height="80">](https://nodejs.org)
-
-</div>
 
 ## Installation & configuration
-- option 1 : docker
 
 Before creating the docker image, you must first copy the .env.example file by renaming it to .env and complete the following fields:
 
@@ -50,7 +42,7 @@ In order to interact with the laravel application, you need to access the contai
 ```bash
 docker compose exec -it app bash
 ```
-
+Once inside the container, you must type the following commands to install all dependencies and generate the key
 ```bash
 composer install
 npm install
@@ -67,15 +59,9 @@ Now you can exit from the container by typing ***exit***
 
 The application is accessible at the following address:
 
-http://localhost:8080/
+http://localhost:8000/
 
-To access the database via phpmyadmin, use the following address:
-
-http://localhost:8085/
-
-You just have to fill in the user, the password entered in the .env file and leave the server field empty
-
-If you want to modify a page on the front part, you must use this command for the modifications to be taken into account
+If you want to modify a page on the frontend part you must use this command for the modifications to take effect
 
 ```bash
 docker compose exec -it app bash
@@ -83,39 +69,6 @@ npm run watch-poll
 ```
 <br/>
 
-- option 2 : locally
-
-```bash
-composer install
-npm install 
-cp .env.example .env
-php artisan key:generate
-```
-Create a database locally then complete the .env file
-
-- DB_HOST
-- DB_PORT
-- DB_DATABASE
-- DB_USERNAME
-- DB_PASSWORD
-
-Then perform migrations
-
-```bash
-php artisan migrate
-```
-Generate the dataset
-```bash
-php artisan db:seed
-```
-
-To use, in 2 different terminals, you must type :
-```bash
-php artisan serve
-```
-```bash
-npm run watch
-```
 
 ## License
 
