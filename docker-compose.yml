@@ -22,39 +22,39 @@ services:
             - barathon
 
 # Mysql Service
-    db:
-        image: mysql:8.0
-        container_name: barathon-mysql
-        restart: unless-stopped
-        environment:
-            MYSQL_DATABASE: ${DB_DATABASE}
-            MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
-            MYSQL_PASSWORD: ${DB_PASSWORD}
-            MYSQL_USER: ${DB_USERNAME}
-            SERVICE_TAGS: dev
-            SERVICE_NAME: mysql
-        volumes:
-            - mysqldata:/docker-entrypoint-initdb.d
-        networks:
-            - barathon
+#    db:
+#        image: mysql:8.0
+#        container_name: barathon-mysql
+#        restart: unless-stopped
+#        environment:
+#            MYSQL_DATABASE: ${DB_DATABASE}
+#            MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+#            MYSQL_PASSWORD: ${DB_PASSWORD}
+#            MYSQL_USER: ${DB_USERNAME}
+#            SERVICE_TAGS: dev
+#            SERVICE_NAME: mysql
+#        volumes:
+#            - mysqldata:/docker-entrypoint-initdb.d
+#        networks:
+#            - barathon
 
 # PhpMyAdmin Service
-    phpmyadmin:
-        image: phpmyadmin
-        container_name: pma_barathon-mysql
-        links:
-            - db
-        environment:
-            PMA_HOST: mysql
-            PMA_PORT: 3306
-            PMA_ARBITRARY: 1
-        restart: always
-        ports:
-            - "8085:80"
-        networks:
-            - barathon
+#    phpmyadmin:
+#        image: phpmyadmin
+#        container_name: pma_barathon-mysql
+#        links:
+#            - db
+#        environment:
+#            PMA_HOST: mysql
+#            PMA_PORT: 3306
+#            PMA_ARBITRARY: 1
+#        restart: always
+#        ports:
+#            - "8085:80"
+#        networks:
+#            - barathon
 
-    # Postgres Service
+# Postgres Service
     dbpgsql:
         image: postgres:14
         container_name: barathon-pgsql

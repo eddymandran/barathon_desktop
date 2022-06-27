@@ -27,7 +27,7 @@ These lines are also used to create the docker image
 ```bash
 cp .env.example .env
 ```
-If you chose to use mysql, you must uncomment lines 23-37 and comment lines 39-52 in the docker-compose.yml file
+If you chose to use mysql, you must uncomment lines 24-55 and comment lines 58-86 in the docker-compose.yml file
 
 Now run this commands in your terminal to build docker image:
 ```bash

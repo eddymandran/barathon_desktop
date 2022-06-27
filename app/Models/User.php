@@ -19,8 +19,14 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'firstname',
         'email',
         'password',
+        'address',
+        'city',
+        'zip_code',
+        'birthday',
+        'role_id'
     ];
 
     /**
@@ -41,4 +47,32 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Get the role associated with the user
+     */
+    public function role(){
+        return $this->belongsTo(Roles::class,'role_id');
+    }
+
+    /**
+     * Get the bookings associated with the user
+     */
+    public function bookings(){
+        return $this->hasMany(Bookings::class, "user_id" );
+    }
+
+    /**
+     * Get the events associated with the user
+     */
+    public function events(){
+        return $this->belongsToMany(Events::class, "bookings", "user_id" , "event_id");
+    }
+
+    /**
+     * Get the bar (owner) associated with the user
+     */
+    public function bars(){
+        return $this->hasMany(Bars::class, "user_id");
+    }
 }
