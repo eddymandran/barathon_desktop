@@ -154,8 +154,8 @@
                                 <select id='role_id' class="form-control @error('role_id') is-invalid @enderror"
                                         name="role_id" required autocomplete="role_id" >
                                 <option value="">-- Merci de choisir --</option>
-                                <option value='1'>Non</option>
-                                <option value='2'>Oui</option>
+                                <option value='2'>Non</option>
+                                <option value='3'>Oui</option>
                                 </select>
 
                                 @error('role_id')
