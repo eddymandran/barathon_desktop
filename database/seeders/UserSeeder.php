@@ -17,9 +17,9 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        $roleAdmin = Roles::where('name', 'Admin')->first();
-        $roleUtilisateur = Roles::where('name', 'Utilisateur')->first();
-        $roleProfessionnel = Roles::where('name', 'Professionnel')->first();
+//        $roleAdmin = Roles::where('name', 'Admin')->first();
+//        $roleUtilisateur = Roles::where('name', 'Utilisateur')->first();
+//        $roleProfessionnel = Roles::where('name', 'Professionnel')->first();
 
         $datas = [
             [
@@ -31,7 +31,7 @@ class UserSeeder extends Seeder
                 'city' => 'Paris',
                 'zip_code' => '75008',
                 'birthday' => '1985-11-17',
-                'role_id' => $roleAdmin->id
+                'role' => 'admin'
             ],
             [
                 'name' => 'Disney',
@@ -42,7 +42,7 @@ class UserSeeder extends Seeder
                 'city' => 'Coupvray',
                 'zip_code' => '77700',
                 'birthday' => '1995-05-27',
-                'role_id' => $roleUtilisateur->id
+                'role' => 'utilisateur'
             ],
             [
                 'name' => 'Churchill',
@@ -53,7 +53,7 @@ class UserSeeder extends Seeder
                 'city' => 'Paris',
                 'zip_code' => '75002',
                 'birthday' => '1989-04-05',
-                'role_id' => $roleProfessionnel->id
+                'role' => 'professionnel'
             ],
 
         ];

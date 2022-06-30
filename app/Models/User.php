@@ -26,7 +26,7 @@ class User extends Authenticatable
         'city',
         'zip_code',
         'birthday',
-        'role_id'
+        'role'
     ];
 
     /**
@@ -47,13 +47,6 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
-    /**
-     * Get the role associated with the user
-     */
-    public function role(){
-        return $this->belongsTo(Roles::class,'role_id');
-    }
 
     /**
      * Get the bookings associated with the user

@@ -148,17 +148,17 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="role_id" class="col-md-4 col-form-label text-md-end">{{ __('Etes vous un professionnel ?') }}</label>
+                            <label for="role" class="col-md-4 col-form-label text-md-end">{{ __('Etes vous un professionnel ?') }}</label>
 
                             <div class="col-md-6">
-                                <select id='role_id' class="form-control @error('role_id') is-invalid @enderror"
-                                        name="role_id" required autocomplete="role_id" >
+                                <select id='role' class="form-control @error('role') is-invalid @enderror"
+                                        name="role" required autocomplete="role" >
                                 <option value="">-- Merci de choisir --</option>
-                                <option value='2'>Non</option>
-                                <option value='3'>Oui</option>
+                                <option value='utilisateur'>Non</option>
+                                <option value='professionnel'>Oui</option>
                                 </select>
 
-                                @error('role_id')
+                                @error('role')
                                 <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

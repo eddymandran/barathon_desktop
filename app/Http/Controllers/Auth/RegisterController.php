@@ -53,6 +53,8 @@ class RegisterController extends Controller
         $today = new Carbon();
         $minor = $today->subYears(18)->format('Y-m-d');
 
+
+
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
@@ -70,6 +72,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+
         return User::create([
             'name' => $data['name'],
             'firstname' => $data['firstname'],
@@ -79,7 +82,7 @@ class RegisterController extends Controller
             'city' => $data['city'],
             'zip_code' => $data['zip_code'],
             'birthday' => $data['birthday'],
-            'role_id' => $data['role_id'],
+            'role' => $data['role'],
         ]);
     }
 }

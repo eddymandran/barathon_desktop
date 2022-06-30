@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             // Comment the line to not run the seeder
-            RoleSeeder::class,
+           // RoleSeeder::class,
             UserSeeder::class,
             TagSeeder::class,
             BarSeeder::class
