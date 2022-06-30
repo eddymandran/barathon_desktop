@@ -24,8 +24,9 @@ return new class extends Migration
             $table->string('city');
             $table->string('zip_code');
             $table->date('birthday');
-            $table->foreignId("role_id");
-            $table->foreign("role_id")->references("id")->on("roles");
+            $table->string('role');
+//            $table->foreignId("role_id");
+//            $table->foreign("role_id")->references("id")->on("roles");
             $table->rememberToken();
             $table->timestamps();
         });

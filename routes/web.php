@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,3 +21,41 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+/*
+|--------------------------------------------------------------------------
+| Admin Routes
+|--------------------------------------------------------------------------
+*/
+
+// Exemple de route
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/admin', function () {
+        return 'Bonjour Admin';
+    });
+});
+
+/*
+|--------------------------------------------------------------------------
+| Pro Routes
+|--------------------------------------------------------------------------
+*/
+
+// Exemple de route
+Route::middleware(['auth', 'role:professionnel'])->group(function () {
+    Route::get('/pro', function () {
+        return 'Bonjour Professionnel';
+    });
+});
+
+/*
+|--------------------------------------------------------------------------
+| User Routes
+|--------------------------------------------------------------------------
+*/
+// Exemple de route
+Route::middleware(['auth', 'role:utilisateur'])->group(function () {
+    Route::get('/user', function () {
+        return 'Bonjour Utilisateur';
+    });
+});
