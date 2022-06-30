@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Carbon\Carbon;
 
 class RegisterController extends Controller
 {
@@ -49,10 +50,15 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        $today = new Carbon();
+        $minor = $today->subYears(18)->format('Y-m-d');
+
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'zip_code' => ['required', 'digits:5'],
+            'birthday' => ['required','date','date_format:Y-m-d', 'before:'.$minor ],
         ]);
     }
 
@@ -66,8 +72,14 @@ class RegisterController extends Controller
     {
         return User::create([
             'name' => $data['name'],
+            'firstname' => $data['firstname'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'address' => $data['address'],
+            'city' => $data['city'],
+            'zip_code' => $data['zip_code'],
+            'birthday' => $data['birthday'],
+            'role_id' => $data['role_id'],
         ]);
     }
 }
