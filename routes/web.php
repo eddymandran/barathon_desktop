@@ -27,8 +27,35 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 | Admin Routes
 |--------------------------------------------------------------------------
 */
+
+// Exemple de route
 Route::middleware(['auth', 'role:admin'])->group(function () {
-    Route::get('/private', function () {
+    Route::get('/admin', function () {
         return 'Bonjour Admin';
+    });
+});
+
+/*
+|--------------------------------------------------------------------------
+| Pro Routes
+|--------------------------------------------------------------------------
+*/
+
+// Exemple de route
+Route::middleware(['auth', 'role:professionnel'])->group(function () {
+    Route::get('/pro', function () {
+        return 'Bonjour Professionnel';
+    });
+});
+
+/*
+|--------------------------------------------------------------------------
+| User Routes
+|--------------------------------------------------------------------------
+*/
+// Exemple de route
+Route::middleware(['auth', 'role:utilisateur'])->group(function () {
+    Route::get('/user', function () {
+        return 'Bonjour Utilisateur';
     });
 });
