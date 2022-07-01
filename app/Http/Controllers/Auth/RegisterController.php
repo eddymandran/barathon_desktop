@@ -52,15 +52,18 @@ class RegisterController extends Controller
     {
         $today = new Carbon();
         $minor = $today->subYears(18)->format('Y-m-d');
-
+        $tooOld = $today->subCenturies(1)->format('Y-m-d');
 
 
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:150'],
+            'firstname' =>['required', 'string', 'max:150'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'address' => ['nullable', 'string'],
+            'city' => ['nullable', 'string'],
             'zip_code' => ['required', 'digits:5'],
-            'birthday' => ['required','date','date_format:Y-m-d', 'before:'.$minor ],
+            'naissance' => ['required','date','date_format:Y-m-d', 'before:'.$minor, 'after:'.$tooOld ],
         ]);
     }
 
@@ -81,7 +84,7 @@ class RegisterController extends Controller
             'address' => $data['address'],
             'city' => $data['city'],
             'zip_code' => $data['zip_code'],
-            'birthday' => $data['birthday'],
+            'birthday' => $data['naissance'],
             'role' => $data['role'],
         ]);
     }
