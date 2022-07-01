@@ -5,14 +5,14 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Inscription') }}</div>
+                <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
 
                         <div class="row mb-3">
-                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Nom') }}</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Nom *') }}</label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text"
@@ -45,7 +45,7 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email') }}</label>
+                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email *') }}</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
@@ -60,7 +60,7 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Mot de passe')
+                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Mot de passe *')
                                 }}</label>
 
                             <div class="col-md-6">
@@ -78,7 +78,7 @@
 
                         <div class="row mb-3">
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{
-                                __('Confirmation du mot de passe') }}</label>
+                                __('Confirmation du mot de passe *') }}</label>
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control"
@@ -103,7 +103,7 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="zip_code" class="col-md-4 col-form-label text-md-end">{{ __('Code postal') }}</label>
+                            <label for="zip_code" class="col-md-4 col-form-label text-md-end">{{ __('Code postal *') }}</label>
 
                             <div class="col-md-6">
                                 <input id="zip_code" type="number" class="form-control @error('zip_code') is-invalid @enderror"
@@ -111,7 +111,11 @@
 
                                 @error('zip_code')
                                 <span class="invalid-feedback" role="alert">
+                                    @if (App::isLocale('fr'))
+                                     <strong>Le champ code postal doit contenir 5 chiffres</strong>
+                                    @else
                                         <strong>{{ $message }}</strong>
+                                    @endif
                                     </span>
                                 @enderror
                             </div>
@@ -133,13 +137,13 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="birthday" class="col-md-4 col-form-label text-md-end">{{ __('Date de naissance') }}</label>
+                            <label for="naissance" class="col-md-4 col-form-label text-md-end">{{ __('Date de naissance *') }}</label>
 
                             <div class="col-md-6">
-                                <input id="birthday" type="date" class="form-control @error('birthday') is-invalid @enderror"
-                                       name="birthday" value="{{ old('birthday') }}" required autocomplete="birthday" >
+                                <input id="naissance" type="date" class="form-control @error('naissance') is-invalid @enderror"
+                                       name="naissance" value="{{ old('naissance') }}" required autocomplete="naissance" >
 
-                                @error('birthday')
+                                @error('naissance')
                                 <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -148,7 +152,7 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="role" class="col-md-4 col-form-label text-md-end">{{ __('Etes vous un professionnel ?') }}</label>
+                            <label for="role" class="col-md-4 col-form-label text-md-end">{{ __('Etes vous un professionnel ? *') }}</label>
 
                             <div class="col-md-6">
                                 <select id='role' class="form-control @error('role') is-invalid @enderror"
@@ -169,7 +173,7 @@
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4 mx-auto">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('S\'enregister') }}
+                                    {{ __('Register') }}
                                 </button>
                             </div>
                         </div>
